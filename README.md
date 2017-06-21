@@ -22,14 +22,14 @@ Jeder :tada:. Das Projekt ist Open Source und steht allen kostenlos zur Verfügu
 Aktuell in Version 1.0 (21.06.2017) [(aktuelle Änderungen)](CHANGELOG.md)
 
 ### Windows
-- [FuME Zip-Datei für Windows von hier downloaden]()
+- [FuME Zip-Datei für Windows von hier downloaden](releases/latest)
 - FuME.zip entpacken und an gewünschtem Ort speichern
 - FuME.exe starten
 
 **Anmerkung:** nur Windows 7 und neuer wird unterstützt.
 
 ### macOS
-- [FuME Zip-Datei für macOS von hier downloaden](releases/download/v1.0/FuME_macOS.zip)
+- [FuME Zip-Datei für macOS von hier downloaden](releases/latest)
 - FuME.zip entpacken und an gewünschtem Ort speichern
 - Rechtsklick auf FuME.app -> Öffnen
 - klicke öffnen falls eine Sicherheitswarnung erscheint
