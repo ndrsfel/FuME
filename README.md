@@ -60,7 +60,7 @@ Für alle Funktionen, die Zugang zur [Vereinsverwaltung](https://www.fupa.net/fu
  - [ ] Windows Exe
 
 ## Bugs / Kontakt
-FuME ist Open Source und wurde von Andreas Feldl erstellt. Fehler, Bugs oder Wünsche bitte unter [Issues](issues) melden. 
+FuME ist Open Source und wurde von Andreas Feldl erstellt. Fehler, Bugs oder Wünsche bitte unter [Issues](https://github.com/ndrsfldl/FuME/issues) melden. 
 Bei Fragen oder Probleme eine Mail an <fume@afeldl.de>
 
 ## Lizenz / Credit
