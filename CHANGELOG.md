@@ -1,3 +1,3 @@
-## 1.0 (01.06.2017)
+## 1.0 (21.06.2017)
 
-- wir sind online :tada:
+- wir sind online in Version 1.0 :tada:

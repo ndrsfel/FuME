@@ -1,11 +1,11 @@
-<img src="http://creativela.de/header.png" alt="FuME FuPa Match Explorer" width="400">
+<img src="bin/header.png" alt="FuME FuPa Match Explorer" width="400">
 
 # Was ist FuME?
 :us: _Short description in english:_ FuME is the one and only Match Explorer for the German amateur soccer platform [FuPa.net](https://www.fupa.net/index.php?page=kalender) written in pythons qt module pyqt5 published under LGPLv3 license using requests for public website information and selenium for [Vereinsverwaltung](https://www.fupa.net/fupa/admin/index.php) (password required).
  
 FuME helps photographers speeding up their workflow by **filtering** all on [FuPa Match-Kalender](https://fupa.net/index.php?page=kalender) listed games by team name, match date and location - all adjustable at once! In FuPa you have to reserve every game you want to photograph (time consuming and annoying) - FuME comes with **bulk mode**  to simplify reservation process.
 
-![FuME Screenshot](http://creativela.de/screenshot.png)
+![FuME Screenshot](bin/screenshot.png)
 
 :de: FuME hilft dir beim **Planen**, **Sortieren** und **Reservieren** von Fußballspielen, damit dir kein Spiel entgeht! Einfach Vereine in FuME auswählen, Spiele importieren und loslegen. Pro Spieltag beschäftigst du dich **maximal 5 Minuten** mit suchen und reservieren von duzenden Spielen und behältst somit 20+ Vereine in deiner Region im Blick. Solltest du an der Grenze zweier Regionen wohnen, hilft dir FuME dabei, den Überblick zu behalten. Unübersichtliche, lange und nach Verein beschränkte Listen gehören so der Vergangenheit an. 
 
@@ -19,7 +19,7 @@ Jeder :tada:. Das Projekt ist Open Source und steht allen kostenlos zur Verfügu
 - und vieles mehr!
 
 ## Download
-Aktuell in Version 1.0 (01.06.2017) [(aktuelle Änderungen)](CHANGELOG.md)
+Aktuell in Version 1.0 (21.06.2017) [(aktuelle Änderungen)](CHANGELOG.md)
 
 ### Windows
 - [FuME Zip-Datei für Windows von hier downloaden]()
@@ -29,7 +29,7 @@ Aktuell in Version 1.0 (01.06.2017) [(aktuelle Änderungen)](CHANGELOG.md)
 **Anmerkung:** nur Windows 7 und neuer wird unterstützt.
 
 ### macOS
-- [FuME Zip-Datei für macOS von hier downloaden]()
+- [FuME Zip-Datei für macOS von hier downloaden](releases/download/v1.0/FuME_macOS.zip)
 - FuME.zip entpacken und an gewünschtem Ort speichern
 - Rechtsklick auf FuME.app -> Öffnen
 - klicke öffnen falls eine Sicherheitswarnung erscheint
@@ -37,7 +37,7 @@ Aktuell in Version 1.0 (01.06.2017) [(aktuelle Änderungen)](CHANGELOG.md)
 **Anmerkung:** nur unter macOS Version 10.12 (Sierra) getestet. Ältere Versionen werden nicht zwingend unterstüzt.
 
 ## Erster Start
-![Anleitung](http://creativela.de/anleitung.png)
+![Anleitung](bin/anleitung.png)
 
 Wähle zuerst deine Region im Dropdown-Menü _(1)_. Beschränke dann den Zeitraum (von/bis), für den die Spiele **angezeigt** 
 und **importiert** werden sollen _(2)_. Neue Spiele fügst du nun mit dem Knopf "importieren" _(3)_ der Übersicht hinzu _(4)_. Im Anschluss fügst du deine Vereine, die du fotografierst, über Auswahl "konfigurieren" _(5)_ deiner Vereinsliste _(7)_ hinzu. Im Dialog "Filter bearbeiten" _(6)_ markierst du deine Vereine. Nach einem Klick auf "Ok" kannst du Spiele nach Mannschaft _(7)_, Datum _(2)_ und Region _(1)_ filtern.
