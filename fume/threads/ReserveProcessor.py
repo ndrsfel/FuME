@@ -21,6 +21,7 @@ class ReserveProcessor(QtCore.QThread):
 
         self.selected = options['selected']
         self.cookies = options['cookie']
+        self.dbPath = options['database-path']
         self.baseUrl = 'https://www.fupa.net/fupa/admin/index.php?page=fotograf_spiele'
 
     def __del__(self):
@@ -70,7 +71,7 @@ class ReserveProcessor(QtCore.QThread):
         self.driver.request("GET", self.baseUrl + '&mafo_id=%s&act=del' % match['mafo_id'])
 
     def markRowAsReserved(self, match, val):
-        connection = sqlite3.connect(self.get_pathToTemp("db/sql.db"))
+        connection = sqlite3.connect(self.dbPath)
         cursor = connection.cursor()
 
         updateStr = """UPDATE calendar SET reserved="{val}", mafo_id="{mafo_id}" WHERE match_id = "{match_id}";"""

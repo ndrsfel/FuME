@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import appdirs
 import os
+import shutil
 import sys
 
 from PyQt5 import QtCore
@@ -58,10 +60,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.label.setPixmap(QtGui.QPixmap(self.get_pathToTemp("bin/header_klein.png")))
         self.statusBar.showMessage("Willkommen!")
 
+        self.read_settings()
+
         self.logDialog = LogDialog(self)
         self.settingsDialog = SettingsDialog(self)
-
-        self.read_settings()
 
         if not self.set_database():
             sys.exit(1)
@@ -108,8 +110,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def set_database(self):
         self.db = QtSql.QSqlDatabase.addDatabase('QSQLITE')
-        self.db.setDatabaseName(self.get_pathToTemp("db/sql.db"))
-        #self.db.setDatabaseName("db/sql.db")
+        self.db.setDatabaseName(self.dbPath)
+
         if not self.db.open():
             QtWidgets.QMessageBox.critical(None, QtWidgets.qApp.tr("Datenbank nicht verfügbar"),
                                            QtWidgets.qApp.tr(
@@ -211,6 +213,21 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.settings = QtCore.QSettings('fume', 'Match-Explorer')
         self.dateEdit_3.setDate(self.settings.value('date_from_calendar', QtCore.QDate(2017, 1, 1)))
         self.dateEdit_4.setDate(self.settings.value('date_to_calendar', QtCore.QDate(2017, 12, 31)))
+
+        try:
+            sys._MEIPASS
+            # runs as app  - get path to database in project folder
+            dirPath = appdirs.user_data_dir('FuME')
+            if not os.path.exists(dirPath):
+                os.makedirs(dirPath)
+                shutil.copy(self.get_pathToTemp('db/sql_default.db'), os.path.join(dirPath, 'sql.db'))
+            self.dbPath = os.path.join(dirPath, 'sql.db')
+        except:
+            # runs in terminal - using database in user data dir
+            filePath = 'db/sql.db'
+            if not os.path.isfile(filePath):
+                shutil.copy('db/sql_default.db', filePath)
+            self.dbPath = 'db/sql.db'
 
     def closeEvent(self, QCloseEvent):
         self.write_settings()
@@ -339,6 +356,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         options = {
             'cookie': cookies,
             'selected': selected,
+            'database-path': self.dbPath,
             'parent': self
         }
         self.reserveProcess = ReserveProcessor(options)
@@ -366,6 +384,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             'region': self.comboBox.currentText(),
             'date-from': self.dateEdit_3.date(),
             'date-to': self.dateEdit_4.date(),
+            'database-path': self.dbPath,
             'parent': self
         }
         self.downloadProcessor = DownloadProcessor(options)

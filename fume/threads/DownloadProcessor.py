@@ -19,6 +19,7 @@ class DownloadProcessor(QtCore.QThread):
         self.region = options['region']
         self.date_from = options['date-from']
         self.date_to = options['date-to']
+        self.dbPath = options['database-path']
 
     def __del__(self):
         self.wait()
@@ -77,7 +78,7 @@ class DownloadProcessor(QtCore.QThread):
             tmp.append(spiel)
         data = tmp
 
-        connection = sqlite3.connect(self.get_pathToTemp("db/sql.db"))
+        connection = sqlite3.connect(self.dbPath)
         cursor = connection.cursor()
 
         for p in data:
@@ -102,14 +103,6 @@ class DownloadProcessor(QtCore.QThread):
         connection.close()
 
         return len(data)
-
-    def get_pathToTemp(self, relative_path):
-        try:
-            base_path = sys._MEIPASS
-        except Exception:
-            base_path = os.path.abspath(".")
-
-        return os.path.join(base_path, relative_path)
 
     def run(self):
         self.statusBarSignal.emit("Download")
