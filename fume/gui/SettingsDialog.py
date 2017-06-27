@@ -47,15 +47,16 @@ class SettingsDialog(QtWidgets.QDialog, Ui_Settings):
         # https://doc.qt.io/qt-5/qmessagebox.html
         msgBox = QtWidgets.QMessageBox()
 
-        try:
-            tmp = webdriver.Chrome(self.get_pathToTemp('chromedriver'))
-            tmp.quit()
-        except:
-            QtWidgets.QMessageBox.critical(self, QtWidgets.qApp.tr("Keinen Selenium Treiber gefunden!"),
-                                           QtWidgets.qApp.tr("Kein Google Chrome installiert!\n\n"
-                                                             "Chrome installieren um forzufahren."),
-                                           QtWidgets.QMessageBox.Cancel)
-            return
+        # TODO: Check if Chrome is installed
+        # try:
+        #     tmp = webdriver.Chrome(self.get_pathToTemp('chromedriver'))
+        #     tmp.quit()
+        # except:
+        #     QtWidgets.QMessageBox.critical(self, QtWidgets.qApp.tr("Keinen Selenium Treiber gefunden!"),
+        #                                    QtWidgets.qApp.tr("Kein Google Chrome installiert!\n\n"
+        #                                                      "Chrome installieren um forzufahren."),
+        #                                    QtWidgets.QMessageBox.Cancel)
+        #     return
 
         try:
             sys._MEIPASS

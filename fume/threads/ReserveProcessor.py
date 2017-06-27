@@ -96,7 +96,7 @@ class ReserveProcessor(QtCore.QThread):
         try:
             sys._MEIPASS
             # runs as app  - get path to chromedriver in project folder
-            self.driver = Chrome(self.get_pathToTemp("selenium/webdriver/chromedriver"))
+            self.driver = Chrome(self.get_pathToTemp("chromedriver"))
         except:
             # runs in terminal - using chromedriver in $PATH
             self.driver = Chrome()

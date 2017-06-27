@@ -220,13 +220,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             dirPath = appdirs.user_data_dir('FuME')
             if not os.path.exists(dirPath):
                 os.makedirs(dirPath)
-                shutil.copy(self.get_pathToTemp('db/sql_default.db'), os.path.join(dirPath, 'sql.db'))
+                shutil.copy(self.get_pathToTemp(sys.path.join('db','sql_default.db')), os.path.join(dirPath, 'sql.db'))
             self.dbPath = os.path.join(dirPath, 'sql.db')
         except:
             # runs in terminal - using database in user data dir
             filePath = 'db/sql.db'
             if not os.path.isfile(filePath):
-                shutil.copy('db/sql_default.db', filePath)
+                shutil.copy(sys.path.join('db', 'sql_default.db'), filePath)
             self.dbPath = 'db/sql.db'
 
     def closeEvent(self, QCloseEvent):
