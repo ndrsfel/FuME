@@ -1,3 +1,5 @@
+[![Requirements Status](https://requires.io/github/ndrsfldl/FuME/requirements.svg?branch=master)](https://requires.io/github/ndrsfldl/FuME/requirements/?branch=master)
+
 <img src="bin/header.png" alt="FuME FuPa Match Explorer" width="400">
 
 # Was ist FuME?
