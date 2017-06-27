@@ -48,9 +48,10 @@ class SettingsDialog(QtWidgets.QDialog, Ui_Settings):
         msgBox = QtWidgets.QMessageBox()
 
         try:
-            webdriver.Chrome()
+            tmp = webdriver.Chrome(self.get_pathToTemp('chromedriver'))
+            tmp.quit()
         except:
-            QtWidgets.QMessageBox.critical(self, QtWidgets.qApp.tr("Kein Chrome installiert"),
+            QtWidgets.QMessageBox.critical(self, QtWidgets.qApp.tr("Keinen Selenium Treiber gefunden!"),
                                            QtWidgets.qApp.tr("Kein Google Chrome installiert!\n\n"
                                                              "Chrome installieren um forzufahren."),
                                            QtWidgets.QMessageBox.Cancel)
@@ -59,7 +60,7 @@ class SettingsDialog(QtWidgets.QDialog, Ui_Settings):
         try:
             sys._MEIPASS
             # runs as app  - get path to chromedriver in project folder
-            self.driver = webdriver.Chrome(self.get_pathToTemp("selenium/webdriver/chromedriver"))
+            self.driver = webdriver.Chrome(self.get_pathToTemp('chromedriver'))
         except:
             # runs in terminal - using chromedriver in $PATH
             self.driver = webdriver.Chrome()
@@ -90,7 +91,7 @@ class SettingsDialog(QtWidgets.QDialog, Ui_Settings):
                 errorMsg = "Ungültiger Zugriff. Bitte neu einloggen."
             msgBox.setInformativeText(errorMsg)
 
-        self.driver.close()
+        self.driver.quit()
         msgBox.exec()
 
     @QtCore.pyqtSlot()
