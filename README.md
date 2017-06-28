@@ -1,6 +1,8 @@
-[![Requirements Status](https://requires.io/github/ndrsfldl/FuME/requirements.svg?branch=master)](https://requires.io/github/ndrsfldl/FuME/requirements/?branch=master)
-
 <img src="bin/header.png" alt="FuME FuPa Match Explorer" width="400">
+
+[![Requirements Status](https://requires.io/github/ndrsfldl/FuME/requirements.svg?branch=master)](https://requires.io/github/ndrsfldl/FuME/requirements/?branch=master)
+[![Github All Releases](https://img.shields.io/github/downloads/ndrsfldl/fume/total.svg)](https://github.com/ndrsfldl/FuME/releases)
+[![GitHub release](https://img.shields.io/github/release/ndrsfldl/fume.svg)](https://github.com/ndrsfldl/FuME/releases/latest)
 
 # Was ist FuME?
 :us: _Short description in english:_ FuME is the one and only Match Explorer for the German amateur soccer platform [FuPa.net](https://www.fupa.net/index.php?page=kalender) written in pythons qt module pyqt5 published under LGPLv3 license using requests for public website information and selenium for [Vereinsverwaltung](https://www.fupa.net/fupa/admin/index.php) (password required).
@@ -24,17 +26,17 @@ Jeder :tada:. Das Projekt ist Open Source und steht allen kostenlos zur Verfügu
 Aktuell in Version 1.0 (21.06.2017) [(aktuelle Änderungen)](CHANGELOG.md)
 
 ### Windows
-- [FuME Zip-Datei für Windows von hier downloaden](https://github.com/ndrsfldl/FuME/releases/latest)
-- FuME.zip entpacken und an gewünschtem Ort speichern
+- [FuME Zip-Datei für Windows von hier downloaden](https://github.com/ndrsfldl/FuME/releases/download/v1.0/FuME_Windows.zip)
+- FuME_Windows.zip an gewünschtem Ort entpacken
 - FuME.exe starten
 
-**Anmerkung:** nur Windows 7 und neuer wird unterstützt.
+**Anmerkung:** Windows 7 oder höher wird empfohlen.
 
 ### macOS
 - [FuME Zip-Datei für macOS von hier downloaden](https://github.com/ndrsfldl/FuME/releases/download/v1.0/FuME_macOS.zip)
-- FuME.zip entpacken und an gewünschtem Ort speichern
-- Rechtsklick auf FuME.app -> Öffnen
-- klicke öffnen falls eine Sicherheitswarnung erscheint
+- FuME_macOS.zip an gewünschtem Ort entpacken
+- Rechtsklick auf FuME.app -> öffnen
+- klicke _öffnen_ falls eine Sicherheitswarnung erscheint
 
 **Anmerkung:** nur unter macOS Version 10.12 (Sierra) getestet. Ältere Versionen werden nicht zwingend unterstüzt.
 
@@ -59,12 +61,12 @@ Für alle Funktionen, die Zugang zur [Vereinsverwaltung](https://www.fupa.net/fu
 ## Todos
  - [ ] Reservierungsübersicht
  - [x] MacOS App
- - [ ] Windows Exe
+ - [x] Windows Exe
 
 ## Bugs / Kontakt
 FuME ist Open Source und wurde von Andreas Feldl erstellt. Fehler, Bugs oder Wünsche bitte unter [Issues](https://github.com/ndrsfldl/FuME/issues) melden. 
 Bei Fragen oder Probleme eine Mail an <fume@afeldl.de>
 
 ## Lizenz / Credit
-Diese Project verwendet die LGPL v3 Lizenz, siehe Qts [Obligations of the LGPL](https://www.qt.io/qt-licensing-terms/)      
+Dieses Projekt verwendet die LGPL v3 Lizenz, siehe Qts [Obligations of the LGPL](https://www.qt.io/qt-licensing-terms/)      
 Basic Icon made by [Freepik](http://www.freepik.com/) from [www.flaticon.com](http://www.flaticon.com) 
