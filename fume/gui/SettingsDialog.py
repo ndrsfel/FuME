@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import os
 import sys
 import time
-import os
 
 from PyQt5 import QtCore
 from PyQt5 import QtWidgets
+from selenium import common
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
@@ -44,27 +45,28 @@ class SettingsDialog(QtWidgets.QDialog, Ui_Settings):
         __username = self.lineEdit.text()
         __password = self.lineEdit_2.text()
 
+        options = webdriver.ChromeOptions()
+        # waiting for Chrome 60 on Windows
+        # Chrome 59 for macOS already supports headless Chrome!
+        # options.add_argument('--headless')
+
         # https://doc.qt.io/qt-5/qmessagebox.html
         msgBox = QtWidgets.QMessageBox()
-
-        # TODO: Check if Chrome is installed
-        # try:
-        #     tmp = webdriver.Chrome(self.get_pathToTemp('chromedriver'))
-        #     tmp.quit()
-        # except:
-        #     QtWidgets.QMessageBox.critical(self, QtWidgets.qApp.tr("Keinen Selenium Treiber gefunden!"),
-        #                                    QtWidgets.qApp.tr("Kein Google Chrome installiert!\n\n"
-        #                                                      "Chrome installieren um forzufahren."),
-        #                                    QtWidgets.QMessageBox.Cancel)
-        #     return
 
         try:
             sys._MEIPASS
             # runs as app  - get path to chromedriver in project folder
-            self.driver = webdriver.Chrome(self.get_pathToTemp('chromedriver'))
-        except:
+            self.driver = webdriver.Chrome(self.get_pathToTemp('chromedriver'), chrome_options=options)
+        except AttributeError:
             # runs in terminal - using chromedriver in $PATH
-            self.driver = webdriver.Chrome()
+            self.driver = webdriver.Chrome(chrome_options=options)
+        except common.exceptions.WebDriverException:
+            # no Chrome found
+            QtWidgets.QMessageBox.critical(self, QtWidgets.qApp.tr("Keinen Treiber gefunden!"),
+                                           QtWidgets.qApp.tr("Kein Google Chrome installiert!\n\n"
+                                                             "Chrome installieren um forzufahren."),
+                                           QtWidgets.QMessageBox.Cancel)
+            return
 
         self.driver.get("https://www.fupa.net/fupa/admin/index.php")
         assert "Vereinsverwaltung" in self.driver.title

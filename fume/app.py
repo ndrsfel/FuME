@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import appdirs
+import datetime
 import os
 import shutil
 import sys
 
+import appdirs
 from PyQt5 import QtCore
 from PyQt5 import QtGui
 from PyQt5 import QtSql
@@ -211,23 +212,20 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def read_settings(self):
         self.settings = QtCore.QSettings('fume', 'Match-Explorer')
-        self.dateEdit_3.setDate(self.settings.value('date_from_calendar', QtCore.QDate(2017, 1, 1)))
-        self.dateEdit_4.setDate(self.settings.value('date_to_calendar', QtCore.QDate(2017, 12, 31)))
+        now = datetime.datetime.now()
+        self.dateEdit_3.setDate(self.settings.value('date_from_calendar', QtCore.QDate(now.year, now.month, now.day)))
+        self.dateEdit_4.setDate(self.settings.value('date_to_calendar', QtCore.QDate(now.year, now.month, now.day)))
 
-        try:
-            sys._MEIPASS
-            # runs as app  - get path to database in project folder
-            dirPath = appdirs.user_data_dir('FuME')
-            if not os.path.exists(dirPath):
-                os.makedirs(dirPath)
-                shutil.copy(self.get_pathToTemp(sys.path.join('db','sql_default.db')), os.path.join(dirPath, 'sql.db'))
-            self.dbPath = os.path.join(dirPath, 'sql.db')
-        except:
-            # runs in terminal - using database in user data dir
-            filePath = 'db/sql.db'
-            if not os.path.isfile(filePath):
-                shutil.copy(sys.path.join('db', 'sql_default.db'), filePath)
-            self.dbPath = 'db/sql.db'
+        # dbPaths
+        # Windows: C:\Documents and Settings\<User>\Application Data\Local Settings\FuME\Database
+        # macOS: /Users/<User>/Library/Application Support/FuME
+        userDataDir = appdirs.user_data_dir('FuME', 'Database')
+        src = self.get_pathToTemp(os.path.join('db', 'sql_default.db'))
+        dst = os.path.join(userDataDir, 'sql.db')
+        if not os.path.exists(userDataDir):
+            os.makedirs(userDataDir)
+            shutil.copy(src, dst)
+        self.dbPath = dst
 
     def closeEvent(self, QCloseEvent):
         self.write_settings()
@@ -387,7 +385,15 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             'database-path': self.dbPath,
             'parent': self
         }
-        self.downloadProcessor = DownloadProcessor(options)
+
+        if self.comboBox.currentText() == 'Alle':
+            QtWidgets.QMessageBox.warning(self, QtWidgets.qApp.tr("Region wählen"),
+                                          QtWidgets.qApp.tr("Bitte zuerst eine Region wählen.\n\n"
+                                                            "Ok drücken um fortzufahren."),
+                                          QtWidgets.QMessageBox.Ok)
+            return
+        else:
+            self.downloadProcessor = DownloadProcessor(options)
 
         # Connections
         self.downloadProcessor.finished.connect(self.sqlmodel_calendar.select)

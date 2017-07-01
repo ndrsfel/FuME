@@ -2,12 +2,11 @@
 # -*- coding: utf-8 -*-
 
 import sqlite3
-import sys
-import os
 
 import lxml.html
 import requests
 from PyQt5 import QtCore
+
 
 class DownloadProcessor(QtCore.QThread):
     loggerSignal = QtCore.pyqtSignal(str)
@@ -88,16 +87,20 @@ class DownloadProcessor(QtCore.QThread):
             sql_command = format_str.format(match_id=p[0], league=p[1], match_date=p[2],
                                             home=p[3], guest=p[4], result=p[5], region=self.region)
 
-            if p[0] != '':  # fehler in URL bei Fupa
+            try:
                 cursor.execute(sql_command)
-            else:
-                print("Fehler bei SQL: " + str(sql_command))
+            except:
+                self.loggerSignal.emit('Folgendes Spiel wurde nicht hinzugefügt: %s' % p)
 
             update_str = """UPDATE calendar
                     SET match_date="{match_date}", result="{result}", league="{league}" WHERE match_id = "{match_id}";"""
 
             sql_command = update_str.format(match_id=p[0], match_date=p[2], league=p[1], result=p[5])
-            cursor.execute(sql_command)
+
+            try:
+                cursor.execute(sql_command)
+            except:
+                self.loggerSignal.emit('Folgendes Spiel wurde nicht hinzugefügt: %s' % p)
 
         connection.commit()
         connection.close()
@@ -106,9 +109,6 @@ class DownloadProcessor(QtCore.QThread):
 
     def run(self):
         self.statusBarSignal.emit("Download")
-        if self.region == 'Alle':
-            self.loggerSignal.emit('Bitte eine Region wählen!')
-            return
 
         date_from = self.date_from
         date_to = self.date_to.addDays(1)
@@ -117,8 +117,8 @@ class DownloadProcessor(QtCore.QThread):
         while date_from != date_to:
             try:
                 counter += self.download(date_from.toString("yyyy-MM-dd"))
-            except:
-                self.loggerSignal.emit('Fehler beim importieren!')
+            except Exception as e:
+                self.loggerSignal.emit('Fehler beim importieren: %s' % e)
                 return
             date_from = date_from.addDays(1)
             self.statusBarSignal.emit("Download: #%s Spiele" % counter)
