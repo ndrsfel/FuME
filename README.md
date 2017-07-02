@@ -23,7 +23,7 @@ Jeder :tada:. Das Projekt ist Open Source und steht allen kostenlos zur Verfügu
 - und vieles mehr!
 
 ## Download
-Aktuell in Version 1.0 (21.06.2017) [(aktuelle Änderungen)](CHANGELOG.md)
+Aktuell in Version 1.0 (02.07.2017) [(aktuelle Änderungen)](CHANGELOG.md)
 
 ### Windows
 - [FuME Zip-Datei für Windows von hier downloaden](https://github.com/ndrsfldl/FuME/releases/download/v1.0/FuME_Windows.zip)
