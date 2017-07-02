@@ -30,7 +30,7 @@ class FilterDialog(QtWidgets.QDialog, Ui_filter):
         select home from team_default
         WHERE region = "%s"
         Order By home ASC
-        """% self.region, self.parent().db)
+        """ % self.region, self.parent().db)
 
         # Fetching all teams from db
         # adapted: http://stackoverflow.com/a/27393939/6304901

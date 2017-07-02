@@ -2,12 +2,15 @@
 # -*- coding: utf-8 -*-
 
 import datetime
+import os
 import sqlite3
 import sys
-import os
 
 import lxml.html
 from PyQt5 import QtCore
+from PyQt5 import QtWidgets
+from selenium import common
+from selenium import webdriver
 from seleniumrequests import Chrome
 
 
@@ -93,13 +96,22 @@ class ReserveProcessor(QtCore.QThread):
         self.statusBarSignal.emit("Reserviere Spiele...")
         counter = 0
 
+        options = webdriver.ChromeOptions()
+
         try:
             sys._MEIPASS
             # runs as app  - get path to chromedriver in project folder
-            self.driver = Chrome(self.get_pathToTemp("chromedriver"))
-        except:
+            self.driver = Chrome(self.get_pathToTemp('chromedriver'), chrome_options=options)
+        except AttributeError:
             # runs in terminal - using chromedriver in $PATH
-            self.driver = Chrome()
+            self.driver = Chrome(chrome_options=options)
+        except common.exceptions.WebDriverException:
+            # no Chrome found
+            QtWidgets.QMessageBox.critical(self, QtWidgets.qApp.tr("Keinen Treiber gefunden!"),
+                                           QtWidgets.qApp.tr("Kein Google Chrome installiert!\n\n"
+                                                             "Chrome installieren um forzufahren."),
+                                           QtWidgets.QMessageBox.Cancel)
+            return
 
         self.driver.get(self.baseUrl)
 
