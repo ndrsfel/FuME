@@ -217,9 +217,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.dateEdit_4.setDate(self.settings.value('date_to_calendar', QtCore.QDate(now.year, now.month, now.day)))
 
         # dbPaths
-        # Windows: C:\Documents and Settings\<User>\Application Data\Local Settings\FuME\Database
+        # Windows: C:\Documents and Settings\<User>\Application Data\Local Settings\FuME\FuME
         # macOS: /Users/<User>/Library/Application Support/FuME
-        userDataDir = appdirs.user_data_dir('FuME', 'Database')
+        userDataDir = appdirs.user_data_dir('FuME', 'FuME')
         src = self.get_pathToTemp(os.path.join('db', 'sql_default.db'))
         dst = os.path.join(userDataDir, 'sql.db')
         if not os.path.exists(userDataDir):
