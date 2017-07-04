@@ -227,6 +227,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             shutil.copy(src, dst)
         self.dbPath = dst
 
+        # TODO: Include Chrome to freezed apps and add headless support
+
     def closeEvent(self, QCloseEvent):
         self.write_settings()
         self.db.close()
