@@ -1,6 +1,6 @@
-<img src="bin/header.png" alt="FuME FuPa Match Explorer" width="400">
+<img src="https://github.com/fupadev/FuME/blob/master/bin/header.png?raw=true" alt="FuME FuPa Match Explorer" width="400">
 
-FuME moved to [FuPa on Github](https://github.com/fupadev/FuME)
+# FuME moved to [FuPa on Github](https://github.com/fupadev/FuME)
 
 <!---
 
