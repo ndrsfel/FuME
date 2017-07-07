@@ -1,4 +1,7 @@
 <img src="bin/header.png" alt="FuME FuPa Match Explorer" width="400">
+## FuME moved to [FuPa on Github](https://github.com/fupadev/FuME)
+
+<!---
 
 [![Requirements Status](https://requires.io/github/ndrsfldl/FuME/requirements.svg?branch=master)](https://requires.io/github/ndrsfldl/FuME/requirements/?branch=master)
 [![Github All Releases](https://img.shields.io/github/downloads/ndrsfldl/fume/total.svg)](https://github.com/ndrsfldl/FuME/releases)
@@ -70,3 +73,5 @@ Bei Fragen oder Probleme eine Mail an <fume@afeldl.de>
 ## Lizenz / Credit
 Dieses Projekt verwendet die LGPL v3 Lizenz, siehe Qts [Obligations of the LGPL](https://www.qt.io/qt-licensing-terms/)      
 Basic Icon made by [Freepik](http://www.freepik.com/) from [www.flaticon.com](http://www.flaticon.com) 
+
+-->
